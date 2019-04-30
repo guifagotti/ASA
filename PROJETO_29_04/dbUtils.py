@@ -1,5 +1,6 @@
-import psycopg2.*
+import psycopg2
 from sqlalchemy import create_engine
+from psycopg2 import Error
 
 class DbUtils:
     db_string = "postgresql+psycopg2://postgres:5780@localhost/ASA"
@@ -77,7 +78,6 @@ class DbUtils:
             res = False
         return res
 
-    valor = req_data['valorTotal']
     def Insert_Compra(self, id_fornecedor,id_produto,id_categoria,data,valor,quantidade, fg_ativo):
         db = create_engine(self.db_string)
         self.db_query = "INSERT INTO new_db.tb_compras (id_fornecedor,id_produto,id_categoria,dataCompra,valorTotal,quantidade, fg_ativo) VALUES (%s,%s,%s, %s, %s,%s,%s);" 
